@@ -113,7 +113,7 @@ final class property_wrapperTests: XCTestCase {
         cancel1.cancel()
     }
     func testStruct4() {
-        let a = PWTC()
+        var a = PWTS()
         var a_test = false
         var new_value = TestResult.pass
         let cancel1 = a.$testStatus.sink { value in
