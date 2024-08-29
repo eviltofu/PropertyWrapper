@@ -1,8 +1,8 @@
 import XCTest
 import Combine
-@testable import property_wrapper
+@testable import PropertyWrapper
 
-final class property_wrapperTests: XCTestCase {
+final class PropertyWrapperTests: XCTestCase {
     func testClass1() {
         let a = PWTC()
         var a_test = false

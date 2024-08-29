@@ -4,23 +4,23 @@
 import PackageDescription
 
 let package = Package(
-  name: "property-wrapper",
+  name: "PropertyWrapper",
   platforms: [
     .macOS(.v10_15), .iOS(.v13), .tvOS(.v13)
   ],
   products: [
     // Products define the executables and libraries a package produces, making them visible to other packages.
     .library(
-      name: "property-wrapper",
-      targets: ["property-wrapper"]),
+      name: "PropertyWrapper",
+      targets: ["PropertyWrapper"]),
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
     // Targets can depend on other targets in this package and products from dependencies.
     .target(
-      name: "property-wrapper"),
+      name: "PropertyWrapper"),
     .testTarget(
-      name: "property-wrapperTests",
-      dependencies: ["property-wrapper"]),
+      name: "PropertyWrapperTests",
+      dependencies: ["PropertyWrapper"]),
   ]
 )
