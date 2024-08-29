@@ -49,6 +49,23 @@ final class property_wrapperTests: XCTestCase {
         XCTAssertTrue(a_test)
         cancel1.cancel()
     }
+    func testClass4() {
+        let a = PWTC()
+        var a_test = false
+        var new_value = TestResult.pass
+        let cancel1 = a.$testStatus.sink { value in
+            a_test = new_value == value
+        }
+        a.testStatus = new_value
+        XCTAssertTrue(a_test)
+        new_value = TestResult.pass
+        a.testStatus = new_value
+        XCTAssertTrue(a_test)
+        new_value = TestResult.fail
+        a.testStatus = new_value
+        XCTAssertTrue(a_test)
+        cancel1.cancel()
+    }
     func testStruct1() {
         var a = PWTS()
         var a_test = false
@@ -95,18 +112,42 @@ final class property_wrapperTests: XCTestCase {
         XCTAssertTrue(a_test)
         cancel1.cancel()
     }
+    func testStruct4() {
+        let a = PWTC()
+        var a_test = false
+        var new_value = TestResult.pass
+        let cancel1 = a.$testStatus.sink { value in
+            a_test = new_value == value
+        }
+        a.testStatus = new_value
+        XCTAssertTrue(a_test)
+        new_value = TestResult.pass
+        a.testStatus = new_value
+        XCTAssertTrue(a_test)
+        new_value = TestResult.fail
+        a.testStatus = new_value
+        XCTAssertTrue(a_test)
+        cancel1.cancel()
+    }
+}
+
+enum TestResult {
+    case pass
+    case fail
 }
 
 final class PropertyWrapperTestClass {
     @Broadcast var counter: Int = 0
     @Broadcast var name: String = ""
     @Broadcast var list: [Int] = [1, 2, 3]
+    @Broadcast var testStatus: TestResult = .fail
 }
 
 struct PropertyWrapperTestStruct {
     @Broadcast var counter: Int = 0
     @Broadcast var name: String = ""
     @Broadcast var list: [Int] = [1, 2, 3]
+    @Broadcast var testStatus: TestResult = .fail
 }
 
 typealias PWTC = PropertyWrapperTestClass        
